@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SqlSugar;
+using System;
 
 namespace Blog.Core.Model.Models
 {
     /// <summary>
     /// 按钮跟权限关联表
     /// </summary>
-    public class RoleModulePermission
+    public class RoleModulePermission : RootEntity
     {
-        public int Id { get; set; }
+        public RoleModulePermission()
+        {
+            //this.Role = new Role();
+            //this.Module = new Module();
+            //this.Permission = new Permission();
+
+        }
 
         /// <summary>
         ///获取或设置是否禁用，逻辑上的删除，非物理删除
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public bool? IsDeleted { get; set; }
         /// <summary>
         /// 角色ID
@@ -28,34 +32,45 @@ namespace Blog.Core.Model.Models
         /// <summary>
         /// 按钮ID
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public int? PermissionId { get; set; }
         /// <summary>
         /// 创建ID
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public int? CreateId { get; set; }
         /// <summary>
         /// 创建者
         /// </summary>
+        [SugarColumn(Length = 50, IsNullable = true)]
         public string CreateBy { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime? CreateTime { get; set; }
+        [SugarColumn(IsNullable = true)]
+        public DateTime? CreateTime { get; set; } = DateTime.Now;
         /// <summary>
         /// 修改ID
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public int? ModifyId { get; set; }
         /// <summary>
         /// 修改者
         /// </summary>
+        [SugarColumn(Length = 50, IsNullable = true)]
         public string ModifyBy { get; set; }
         /// <summary>
         /// 修改时间
         /// </summary>
-        public DateTime? ModifyTime { get; set; }
+        [SugarColumn(IsNullable = true)]
+        public DateTime? ModifyTime { get; set; } = DateTime.Now;
 
-        public virtual Role Role { get; set; }
-        public virtual Module Module { get; set; }
-        public virtual Permission Permission { get; set; }
+        // 下边三个实体参数，只是做传参作用，所以忽略下
+        [SugarColumn(IsIgnore = true)]
+        public Role Role { get; set; }
+        [SugarColumn(IsIgnore = true)]
+        public Module Module { get; set; }
+        [SugarColumn(IsIgnore = true)]
+        public Permission Permission { get; set; }
     }
 }

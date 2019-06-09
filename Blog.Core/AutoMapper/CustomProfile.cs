@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using Blog.Core.Model.Models;
-using Blog.Core.Model.VeiwModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Blog.Core.Model.ViewModels;
 
 namespace Blog.Core.AutoMapper
 {
